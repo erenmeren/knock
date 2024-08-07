@@ -1,4 +1,13 @@
 import { Application } from "@/lib/types";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 type ApplicationTableProps = {
   applications: Application[];
@@ -8,30 +17,31 @@ const ApplicationTable: React.FC<ApplicationTableProps> = ({
   applications,
 }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>URL</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table>
+      <TableCaption>A list of your "DOWN" applications.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Name</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>URL</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {applications.map((app) => (
-          <tr key={app.id}>
-            <td>{app.name}</td>
-            <td>{app.description}</td>
-            <td>
+          <TableRow key={app.id}>
+            <TableCell>{app.name}</TableCell>
+            <TableCell>{app.description}</TableCell>
+            <TableCell>
               <a href={app.url} target="_blank" rel="noopener noreferrer">
                 {app.url}
               </a>
-            </td>
-            <td>UP</td>
-          </tr>
+            </TableCell>
+            <TableCell>DOWN</TableCell>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 };
 
